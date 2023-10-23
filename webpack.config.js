@@ -7,7 +7,6 @@ const path = require('path');
 
 module.exports = (env = {}) => {
   const { mode = 'development' } = env;
-  console.log(mode);
   const isProd = mode === 'production';
   const isDev = mode === 'development';
 
@@ -57,24 +56,24 @@ module.exports = (env = {}) => {
     module: {
       rules: [
         {
-          test: /\.(ts|tsx)$/,
+          test: /\.(ts|tsx|js|jsx)$/,
           exclude: /node_modules/,
           use: {
             loader: 'babel-loader',
           },
         },
-        {
-          test: /\.(js|jsx)$/,
-          exclude: /node_modules/,
-          use: {
-            loader: 'babel-loader',
-          },
-        },
+        // {
+        //   test: /\.(js|jsx)$/,
+        //   exclude: /node_modules/,
+        //   use: {
+        //     loader: 'babel-loader',
+        //   },
+        // },
         {
           test: /\.css$/,
           use: getStyleLoaders(),
         },
- //loading fonts
+        //loading fonts
         {
           test: /\.(ttf|otf|eot|woff|woff2)$/,
           use: [

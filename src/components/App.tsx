@@ -1,31 +1,16 @@
-import React, {useEffect, useState} from 'react';
+import React, {useEffect, useState, FC} from 'react';
 import LengthControllers from "./LengthControllers";
 import Timer from "./Timer";
 import TimerController from "./TimerController";
 import { millisecondsToTime } from '../utils';
-import {connect, useSelector} from 'react-redux';
+import {ConnectedProps, connect, useSelector} from 'react-redux';
 import {bindActionCreators} from "@reduxjs/toolkit";
 import timerSlice from "../reducers";
+import { RootState } from '../store';
 
 import '../style/index.css';
 
-function App({ start, timerWorks }) {
-
-  const state = useSelector(state => state.timer)
-
-  const { isRun, time } = state
-  console.log(isRun, time);
-
-  useEffect(() => {
-    let currentTimer = null
-    if (isRun && time > 0) {
-      currentTimer = setInterval(timerWorks, 1000)
-    }
-
-    return () => clearInterval(currentTimer)
-  }, [isRun, time])
-
-  const currentTimeFormatted = millisecondsToTime(time)
+const App = () => {
 
   return (
     <div className="app">
@@ -33,12 +18,12 @@ function App({ start, timerWorks }) {
         <h1 className="app__title">25 + 5 Clock</h1>
         <div className="app__main main">
           <LengthControllers />
-          <Timer currentTimeFormatted={currentTimeFormatted}/>
-          <TimerController startTimer={start}/>
+          <Timer />
+          <TimerController />
           <div className="author">
-            Designed and Coded by<br/>
-            <a href="https://github.com/siloksan">Kurtin Evgeniy
-            </a>
+            Designed and Coded by
+            <br />
+            <a href="https://github.com/siloksan">Kurtin Evgeniy</a>
           </div>
         </div>
       </div>
@@ -46,13 +31,4 @@ function App({ start, timerWorks }) {
   );
 }
 
-const { start, timerWorks } = timerSlice.actions
-
-const mapDispatchToProps = (dispatch) => {
-  return bindActionCreators({
-    start,
-    timerWorks
-  }, dispatch)
-}
-
-export default connect(null, mapDispatchToProps)(App);
+export default App;
