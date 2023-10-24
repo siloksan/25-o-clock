@@ -1,8 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import timerSlice from '../reducers';
 import { bindActionCreators, Dispatch } from '@reduxjs/toolkit';
 import { connect, useSelector } from 'react-redux';
 import { RootState } from '../store';
+
+type Length = {
+  breakLength: number;
+  sessionLength: number
+}
+
+const initialLenghts: Length = {
+  breakLength: 5,
+  sessionLength: 25
+}
 
 const LengthControllers = ({
   breakDecrement,
@@ -17,7 +27,7 @@ const LengthControllers = ({
   return (
     <div className="main__length-controllers">
       <div className="main__length-controller length-controller">
-        <h3 className="length-controller__title" id="break-length">
+        <h3 className="length-controller__title" id="break-label">
           Break Length
         </h3>
         <div className="length-controller__block-control">

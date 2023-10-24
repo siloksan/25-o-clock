@@ -14,6 +14,8 @@ export interface ITimerState {
   isRun: boolean;
   breakLength: number;
   sessionLength: number;
+  currentInterval: 'Session' | 'Break';
+  soundReset: boolean
 }
 
 export const initialState: ITimerState = {
@@ -21,6 +23,8 @@ export const initialState: ITimerState = {
   isRun: false,
   breakLength: 300000,
   sessionLength: 1500000,
+  currentInterval: 'Session',
+  soundReset: false,
 };
 
 const timerSlice = createSlice({

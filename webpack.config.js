@@ -30,6 +30,10 @@ module.exports = (env = {}) => {
             from: path.resolve(__dirname, 'src/img'),
             to: path.resolve(__dirname, 'dist/img'),
           },
+          {
+            from: path.resolve(__dirname, 'src/sound'),
+            to: path.resolve(__dirname, 'dist/sound'),
+          },
         ],
       }),
     ];
